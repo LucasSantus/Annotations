@@ -93,4 +93,12 @@ class AnotacaoHelper {
         whereArgs: [id]
     );
   }
+
+  Future<List<Anotacao>> getAll() async {
+    Database database = await db;
+    List listMap = await database.rawQuery("SELECT * FROM $nomeTabela");
+    List<Anotacao> stuffList = listMap.map((x) => Anotacao.fromMap(x)).toList();
+    return stuffList;
+  }
+
 }

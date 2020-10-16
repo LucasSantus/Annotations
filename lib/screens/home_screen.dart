@@ -1,4 +1,5 @@
 import 'package:annotations/helper/model/anotacao.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:annotations/helper/anotacao_helper.dart';
 import 'package:flutter/services.dart';
@@ -16,6 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   TextEditingController _tituloController = TextEditingController();
   TextEditingController _descricaoController = TextEditingController();
+
+  AnotacaoHelper _helper = AnotacaoHelper();
 
   bool _loading = true;
 
@@ -265,135 +268,180 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildTaskList(Size size) {
     if (anotacoes.isEmpty) {
       return Center(
-        child: _loading ? CircularProgressIndicator() : Text(
+        child: _loading ? CircularProgressIndicator(
+          backgroundColor: KPrimaryColor.withOpacity(0.7),
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+        ) : Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: ButtonTheme(
+                height: size.height * 0.08,
+                child: RaisedButton(
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(15.0)
+                  ),
+                  child: Text(
+                    "ADICIONAR ANOTAÇÃO",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: size.height * 0.025,
+                    ),
+                  ), //Text
+                  color: KPrimaryColor.withOpacity(0.8),
+                  onPressed: (){
+                    _cadastro();
+                  },
+                ),//RaisedButton
+              ),
+            ),
+
+            Text(
+              "Sem Anotações!",
+              style: TextStyle(
+                color: KPrimaryColor.withOpacity(0.7),
+                fontSize: size.height * 0.020,
+              ),
+            ),
+          ],
+        ),
+
+        /*
+        Text(
           "Sem Anotações!",
           style: TextStyle(
             color: KPrimaryColor.withOpacity(0.7),
             fontSize: size.height * 0.022,
           ),
-        ),
+        ), */
       );
     } else {
-      return Scrollbar(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-                child: ListView.builder(
-                    itemCount: anotacoes.length,
-                    itemBuilder: (context, index){
 
-                      final anotacao = anotacoes[index];
+        return Scrollbar(
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                  child: ListView.builder(
+                      itemCount: anotacoes.length,
+                      itemBuilder: (context, index){
 
-                      return Card(
-                        child: Dismissible(
-                          key: Key( DateTime.now().millisecondsSinceEpoch.toString() ),
-                          direction: DismissDirection.endToStart,
-                          onDismissed: (direction) async {
+                        final anotacao = anotacoes[index];
 
-                            //recuperar último item excluído
+                        return Card(
+                          child: Dismissible(
+                            key: Key( DateTime.now().millisecondsSinceEpoch.toString() ),
+                            direction: DismissDirection.endToStart,
+                            onDismissed: (direction) async {
 
-                            _ultimaAnotacaoRemovida = anotacao;
-                            anotacoesRemovidas.add(_ultimaAnotacaoRemovida);
+                              //recuperar último item excluído
 
-                            await _db.removerAnotacao( anotacao.id );
+                              _ultimaAnotacaoRemovida = anotacao;
+                              anotacoesRemovidas.add(_ultimaAnotacaoRemovida);
 
-                            recuperarAnotacoes();
+                              await _db.removerAnotacao( anotacao.id );
 
-                            final snackbar = SnackBar(
-                              //backgroundColor: Colors.green,
-                              duration: Duration(seconds: 3),
-                              content: Text(
-                                "Removendo ${anotacao.titulo}...",
-                                style: TextStyle(
-                                  color: Colors.white.withOpacity(0.8),
-                                ),
-                              ),
-                              action: SnackBarAction(
-                                  textColor: Colors.white.withOpacity(0.8),
-                                  label: "Desfazer",
-                                  onPressed: () async {
-                                    setState(() async {
-                                      //Insere novamente item removido na lista
-                                      for( int loop = 0; loop < anotacoesRemovidas.length; loop++){
-                                        if(anotacoesRemovidas[loop] == anotacao){
-                                          await _db.salvarAnotacao( anotacoesRemovidas[loop] );
-                                          anotacoesRemovidas.removeAt(loop);
-                                          recuperarAnotacoes();
-                                          break;
-                                        }
-                                      }
-                                    });
-                                    recuperarAnotacoes();
-                                  }
-                              ),
-                            );
-                            Scaffold.of(context).showSnackBar(snackbar);
+                              recuperarAnotacoes();
 
-                          },
-                          background: Container(
-                            color: Colors.red.withOpacity(0.9),
-                            padding: EdgeInsets.all(16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.delete,
-                                  color: Colors.white,
-                                )
-                              ],
-                            ),
-                          ),
-                          child: ListTile(
-                            onLongPress: (){
-                              _cadastro(anotacao: anotacao);
-                            },
-                            onTap: (){
-                              _telaVisualizacao(anotacao);
-                            },
-                            title: Text(
-                              anotacao.titulo,
-                              style: TextStyle(
-                                fontSize: 17,
-                                color: KPrimaryColor.withOpacity(0.8),
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.bold,
-                                decorationStyle: TextDecorationStyle.dashed,
-                              ),
-                            ),
-                            trailing: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: <Widget>[
-                                Text(
-                                  "${_formatarData(anotacao.data)}",
+                              final snackbar = SnackBar(
+                                //backgroundColor: Colors.green,
+                                duration: Duration(seconds: 3),
+                                content: Text(
+                                  "Removendo ${anotacao.titulo}...",
                                   style: TextStyle(
-                                    fontSize: 11,
-                                    color: KPrimaryColor.withOpacity(0.8),
+                                    color: Colors.white.withOpacity(0.8),
                                   ),
                                 ),
-                              ],
+                                action: SnackBarAction(
+                                    textColor: Colors.white.withOpacity(0.8),
+                                    label: "Desfazer",
+                                    onPressed: () async {
+                                      setState(() async {
+                                        //Insere novamente item removido na lista
+                                        for( int loop = 0; loop < anotacoesRemovidas.length; loop++){
+                                          if(anotacoesRemovidas[loop] == anotacao){
+                                            await _db.salvarAnotacao( anotacoesRemovidas[loop] );
+                                            anotacoesRemovidas.removeAt(loop);
+                                            recuperarAnotacoes();
+                                            break;
+                                          }
+                                        }
+                                      });
+                                      recuperarAnotacoes();
+                                    }
+                                ),
+                              );
+                              Scaffold.of(context).showSnackBar(snackbar);
+
+                            },
+                            background: Container(
+                              color: Colors.red.withOpacity(0.9),
+                              padding: EdgeInsets.all(16),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                  )
+                                ],
+                              ),
+                            ),
+                            child: ListTile(
+                              onLongPress: (){
+                                _cadastro(anotacao: anotacao);
+                              },
+                              onTap: (){
+                                _telaVisualizacao(anotacao);
+                              },
+                              title: Text(
+                                anotacao.titulo,
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  color: KPrimaryColor.withOpacity(0.8),
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.bold,
+                                  decorationStyle: TextDecorationStyle.dashed,
+                                ),
+                              ),
+                              trailing: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: <Widget>[
+                                  Text(
+                                    "${_formatarData(anotacao.data)}",
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      color: KPrimaryColor.withOpacity(0.8),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }
-                )
-            )
-          ],
-        ),
-      );
+                        );
+                      }
+                  )
+              )
+            ],
+          ),
+        );
+
     }
   }
 
   @override
   void initState() {
     super.initState();
-    recuperarAnotacoes();
-    _loading = true;
-    if(anotacoes.isEmpty){
-      _loading = false;
-    }
+    _helper.getAll().then((list) {
+      setState(() {
+        anotacoes = list;
+        _loading = false;
+      });
+    });
   }
 
   @override
@@ -414,7 +462,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
       body: _buildTaskList(size),
-
+      /*
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
           mini: false,
@@ -425,6 +473,7 @@ class _HomeScreenState extends State<HomeScreen> {
             _cadastro();
           }
       ),
+      */
     );
   }
 }
