@@ -2,7 +2,6 @@ import 'package:annotations/helper/model/anotacao.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:annotations/helper/anotacao_helper.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -19,6 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController _descricaoController = TextEditingController();
 
   AnotacaoHelper _helper = AnotacaoHelper();
+
+
 
   bool _loading = true;
 
@@ -160,57 +161,128 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  _telaVisualizacao( Anotacao anotacao ){
+  _visualizar(Anotacao anotacao, Size size){
 
-    String titulo = anotacao.titulo;
-    String descricao = anotacao.descricao;
+    _tituloController.text = anotacao.titulo.toUpperCase();
+    _descricaoController.text = anotacao.descricao;
 
     showDialog(
         context: context,
         builder: (context){
-          return AlertDialog(
-            title: Text(
-              "${titulo.toUpperCase()}",
-              style: TextStyle(
-                color: KPrimaryColor.withOpacity(0.8),
-                fontSize: 18,
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.bold,
-                decorationStyle: TextDecorationStyle.dashed,
-              ),
+          return Scaffold(
+            appBar: AppBar(
+
+              actions: <Widget>[
+
+                IconButton(
+                  icon: Icon(
+                    Icons.clear,
+                    color: Colors.white70,
+                    size: size.height * 0.05,
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                ),
+
+                IconButton(
+                  icon: Icon(
+                    Icons.edit,
+                    //color: Colors.white70,
+                    size: 30,
+                  ),
+                  onPressed: (){
+                    if(_formKey.currentState.validate()){
+                      salvarAtualizarAnotacao(anotacaoSelecionada: anotacao);
+                      Navigator.pop(context);
+                    }
+                  },
+                ),
+
+                IconButton(
+                  icon: Icon(
+                    Icons.delete,
+                    color: Colors.white70,
+                    size: 30,
+                  ),
+                  onPressed: (){
+                    if(_formKey.currentState.validate()){
+                      salvarAtualizarAnotacao(anotacaoSelecionada: anotacao);
+                      Navigator.pop(context);
+                    }
+                  },
+                ),
+              ],
+              backgroundColor: KPrimaryColor.withOpacity(0.9),
             ),
 
-            content: Scrollbar(
-              child: SingleChildScrollView(
+            body: SingleChildScrollView(
+              child: Form(
+                key: _formKey,
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Text("$descricao",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        color: KPrimaryColor.withOpacity(0.8),
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.normal,
-                        decorationStyle: TextDecorationStyle.dotted,
+
+                    Padding(
+                      padding: EdgeInsets.only(top: 12, left: 12, bottom: 0, right: 12),
+                      child: TextFormField(
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
+                        enabled: true,
+                        controller: _tituloController,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(top: 8, bottom: 6, left: 8, right: 6),
+                          labelText: "Título:",
+                          labelStyle: TextStyle(
+                            fontSize: 18,
+                            color: KPrimaryColor,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(1),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
                       ),
                     ),
+
+                    Padding(
+                      padding: EdgeInsets.only(top: 16, left: 12, bottom: 12, right: 12),
+                      child: TextFormField(
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
+                        enabled: true,
+                        maxLines: 23,
+                        controller: _descricaoController,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(top: 8, bottom: 6, left: 8, right: 6),
+                          labelText: "Descrição:",
+                          labelStyle: TextStyle(
+                            color: KPrimaryColor.withOpacity(0.9),
+                          ),
+                          hintText: "Insira a Descrição...",
+                          hintStyle: TextStyle(
+                            color: KPrimaryColor.withOpacity(0.3),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(1),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
+                        validator: (valor){
+                          if(valor.isEmpty) return "Campo Obrigatório!";
+                          return null;
+                        },
+                      ),
+                    )
+
                   ],
                 ),
               ),
             ),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: (){
-                  Navigator.pop(context);
-                },
-                color: KPrimaryColor.withOpacity(0.8),
-                child: Text(
-                  "Sair",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
           );
         }
     );
@@ -275,7 +347,6 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             Padding(
               padding: EdgeInsets.all(10),
               child: ButtonTheme(
@@ -308,15 +379,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-
-        /*
-        Text(
-          "Sem Anotações!",
-          style: TextStyle(
-            color: KPrimaryColor.withOpacity(0.7),
-            fontSize: size.height * 0.022,
-          ),
-        ), */
       );
     } else {
 
@@ -390,11 +452,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             child: ListTile(
-                              onLongPress: (){
-                                _cadastro(anotacao: anotacao);
-                              },
                               onTap: (){
-                                _telaVisualizacao(anotacao);
+                                _visualizar(anotacao, size);
                               },
                               title: Text(
                                 anotacao.titulo,
@@ -429,12 +488,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         );
-
     }
   }
 
   @override
   void initState() {
+    _loading = true;
     super.initState();
     _helper.getAll().then((list) {
       setState(() {
@@ -446,7 +505,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -462,18 +520,16 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
       body: _buildTaskList(size),
-      /*
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
           mini: false,
-          backgroundColor: KPrimaryColor.withOpacity(0.7),
+          backgroundColor: KPrimaryColor.withOpacity(0.8),
           foregroundColor: Colors.white,
           child: Icon(Icons.add),
           onPressed: (){
             _cadastro();
           }
       ),
-      */
     );
   }
 }
