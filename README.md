@@ -15,4 +15,4 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-![](https://img.shields.io/static/v1?label=flutter&message=v1.5.3&color=red)
+![](https://img.shields.io/static/v1?label=v1.5.3&message=Flutter&color=red)
