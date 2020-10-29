@@ -2,7 +2,7 @@
 
 A new Flutter application.
 
-![](https://img.shields.io/github/license/LucasSantus/Biblioteca)
+![](https://img.shields.io/github/license/LucasSantus/Annotations)
 
 ## Getting Started
 
