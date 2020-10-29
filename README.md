@@ -2,6 +2,8 @@
 
 A new Flutter application.
 
+![](https://img.shields.io/github/license/LucasSantus/Annotations)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
