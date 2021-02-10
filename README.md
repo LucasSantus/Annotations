@@ -82,6 +82,16 @@ Para a aplicação funcionar sem problemas, é necessário ter as ferramentas in
 - Emulador ou Celular.
 	
 --------------------------------------------------------------------------------------
+
+### Dependências
+
+  - cupertino_icons: ^0.1.3
+
+  - intl: ^0.16.1
+
+  - sqflite: ^1.3.1
+
+--------------------------------------------------------------------------------------
 	
 ### Instalando o Projeto
 
@@ -95,51 +105,15 @@ $ git init
 $ git clone https://github.com/LucasSantus/Annotations.git
 ```
 
+**Inserindo o Dart**
+
+Com o Android Studio aberto, abra o projeto "Annotations". Vá em "File > Settings > Languages&Frameworks > Dart" do IDE, selecionando "Enable Dart support fot the project 'annotations'", clique em ... para inserir o local onde o Dart está armazenado, redirecione-se para a pasta onde o flutter foi instalado, a pasta do Dart está localizada juntamente do flutter.
+Exemplo: D:\ProgramFiles\AndroidStudio\flutter\bin\cache\dart-sdk
+
 **Instalando Dependências**
 
-Com o Netbeans aberto, abra o projeto "Escola". Navegando pela função "Projetos" do IDE redirecione-se para "Bibliotecas", selecionando o botão direito do mouse, clique em "Adicionar JAR/Pasta" na janela pop-up que irá aparecer e adicione todas as Dependências citadas abaixo.
-
---------------------------------------------------------------------------------------
-
-### Dependências
-
-- Connector mysql:
-	- mysql-connector-java
+Com o projeto aberto, abra o arquivo pubspec.yaml e selecione "Pub get".
 	
-- Hibernate/lib/required:
-	- FastInfoset-1.2.15.jar
-	- antlr-2.7.7.jar
-	- byte-buddy-1.10.10.jar
-	- classmate-1.5.1.jar
-	- dom4j-2.1.3.jar
-	- hibernate-commons-annotations-5.1.0.Final.jar
-	- hibernate-core-5.4.22.Final.jar
-	- istack-commons-runtime-3.0.7.jar
-	- jandex-2.1.3.Final.jar
-	- javassist-3.24.0-GA.jar
-	- javax.activation-api-1.2.0.jar
-	- javax.persistence-api-2.2.jar
-	- jaxb-api-2.3.1.jar
-	- jaxb-runtime-2.3.1.jar
-	- jboss-logging-3.3.2.Final.jar
-	- jboss-transaction-api_1.2_spec-1.1.1.Final.jar
-	- stax-ex-1.8.jar
-	- txw2-2.3.1.jar
-	
---------------------------------------------------------------------------------------
-	
-### Banco de Dados
-
-**Criando Database**
-
-Com o Mysql WorkBench aberto, crie uma nova conexão.
-
-Abra a nova conexão, rode o comando:
-
-```
-create if not exists database escola;
-```
-
 --------------------------------------------------------------------------------------
 
 ### Contribuição
@@ -164,4 +138,4 @@ Obrigado por me visitar e boa codificação!
 
 ### License
 
-Este projeto está licenciado sob a GPL-3.0 License - veja o [LICENSE.md](https://github.com/LucasSantus/Annotations/blob/master/LICENSE) para melhores detalhes.
+Este projeto está licenciado sob a MIT License - veja o [LICENSE.md](https://github.com/LucasSantus/Annotations/blob/master/LICENSE) para melhores detalhes.
