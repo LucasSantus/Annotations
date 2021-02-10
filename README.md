@@ -36,16 +36,6 @@ Aqui estão as tecnologias utilizadas neste projeto.
  
 --------------------------------------------------------------------------------------
 
-### Algumas Observações Sobre a Aplicação ????
-
-**Observações ainda não preparadas**
-
-1 - Não há funcionalidade de Login / Cadastro, os botões e os formulários da Tela de Login são apenas para questões de IU.
-
-2 - A única opção que funciona na tela _Settings_ é alternar o tema Dark / Light, todas as outras são apenas para questões de interface do usuário.
-
---------------------------------------------------------------------------------------
-
 ### Funcionalidades
 
 **Funcionalidades ainda não preparadas**
@@ -64,6 +54,17 @@ Aqui estão as tecnologias utilizadas neste projeto.
 	- Access recently played podcasts in the form of playlist
 
 	- Change your interests
+
+
+--------------------------------------------------------------------------------------
+
+### Algumas Observações Sobre a Aplicação ????
+
+**Observações ainda não preparadas**
+
+1 - Não há funcionalidade de Login / Cadastro, os botões e os formulários da Tela de Login são apenas para questões de IU.
+
+2 - A única opção que funciona na tela _Settings_ é alternar o tema Dark / Light, todas as outras são apenas para questões de interface do usuário.
 
 --------------------------------------------------------------------------------------
 
