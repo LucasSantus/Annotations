@@ -13,11 +13,12 @@ A ideia é:
 _"Criar uma aplicação de anotações para armazenar qualquer informação&dado que o usuário deseja."_
 
 Este repositório tem foco, na criação de uma aplicação de anotações utilazando CRUD(Create, Read, Update, Delete), interligado a um banco de dados que seja armazenado no  dispositivo móvel do usuário.
+
 --------------------------------------------------------------------------------------
 
 ### Por Que?
 
- Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso você pudesse me fornecer algum feedback sobre o mesmo, código, estrutura ou qualquer coisa que você possa relatar que possa melhora-lo.
+Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso você pudesse me fornecer algum feedback sobre o mesmo, código, estrutura ou qualquer coisa que você possa relatar que possa melhora-lo.
 
 Você pode usar este projeto como quiser, seja para estudar, fazer melhorias, você que manda!
 
