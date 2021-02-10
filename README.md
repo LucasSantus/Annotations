@@ -46,7 +46,7 @@ Aqui estão as tecnologias utilizadas neste projeto.
 
 --------------------------------------------------------------------------------------
 
-### Funcionalidades ????
+### Funcionalidades
 
 **Funcionalidades ainda não preparadas**
 
@@ -69,7 +69,7 @@ Aqui estão as tecnologias utilizadas neste projeto.
 
 ### Requisitos
 
-Para a aplicação funcionar sem problemas, é preciso ter as ferramentas instaladas.
+Para a aplicação funcionar sem problemas, é necessário ter as ferramentas instaladas.
  
 - Git,
 
@@ -87,12 +87,12 @@ Para a aplicação funcionar sem problemas, é preciso ter as ferramentas instal
 
 **Clonando o Repositório**
 
-Dentro da pasta onde o projeto irá ficar armazenado, abra o terminal PowerShell(opcional, qualquer terminal funcionará), Shift + Botão Direito Mouse
+Dentro da pasta onde o projeto irá ficar armazenado, abra o terminal PowerShell (opcional, qualquer terminal funcionará), [Shift + Botão Direito Mouse}
 
 ```
 $ git init
 
-$ git clone https://github.com/LucasSantus/Escola.git
+$ git clone https://github.com/LucasSantus/Annotations.git
 ```
 
 **Instalando Dependências**
@@ -164,4 +164,4 @@ Obrigado por me visitar e boa codificação!
 
 ### License
 
-Este projeto está licenciado sob a GPL-3.0 License - veja o [LICENSE.md](https://github.com/LucasSantus/Escola/blob/master/LICENSE) para melhores detalhes.
+Este projeto está licenciado sob a GPL-3.0 License - veja o [LICENSE.md](https://github.com/LucasSantus/Annotations/blob/master/LICENSE) para melhores detalhes.
