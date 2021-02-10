@@ -1,4 +1,4 @@
-## Escola
+## Annotations
 
 ![License](https://img.shields.io/github/license/LucasSantus/Annotations)
 ![Languages](https://img.shields.io/github/languages/count/LucasSantus/Annotations)
@@ -30,18 +30,10 @@ Este é um projeto totalmente grátis!
  
 Aqui estão as tecnologias utilizadas neste projeto.
  
-* Netbeans version  8.2
-* Java version 8.0.1110.14
-* Hibernate version 5.4.22
-* MySql Workbench version 8.0
+* AndroidStudio version 201.6953283
+* Flutter version 1.22.5
+* Dart version 2.10.4
  
---------------------------------------------------------------------------------------
-
-### Serviços Utilizados
-
-* Git
-* MySql Server
-
 --------------------------------------------------------------------------------------
 
 ### Algumas Observações Sobre a Aplicação ????
@@ -79,15 +71,15 @@ Aqui estão as tecnologias utilizadas neste projeto.
 
 Para a aplicação funcionar sem problemas, é preciso ter as ferramentas instaladas.
  
-- Git
+- Git,
 
-- Netbeans
+- Android Studio,
 
-- Java
+- Flutter,
 
-- Hibernate
+- Dart,
 
-- MySql Workbench
+- Emulador ou Celular.
 	
 --------------------------------------------------------------------------------------
 	
