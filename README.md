@@ -82,7 +82,7 @@ Para a aplicação funcionar sem problemas, é necessário ter as ferramentas in
 
 **Clonando o Repositório**
 
-Dentro da pasta onde o projeto irá ficar armazenado, abra o terminal PowerShell (opcional, qualquer terminal funcionará), [Shift + Botão Direito Mouse}
+Dentro da pasta onde o projeto irá ficar armazenado, abra o terminal PowerShell (opcional, qualquer terminal funcionará), {Shift + Botão Direito Mouse}
 
 ```
 $ git init
