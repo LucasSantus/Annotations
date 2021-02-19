@@ -344,29 +344,6 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: ButtonTheme(
-                height: size.height * 0.08,
-                child: RaisedButton(
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(58.0)
-                  ),
-                  child: Text(
-                    "ADICIONAR ANOTAÇÃO",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: size.height * 0.025,
-                    ),
-                  ), //Text
-                  color: KPrimaryColor.withOpacity(0.7),
-                  onPressed: (){
-                    _cadastro();
-                  },
-                ),//RaisedButton
-              ),
-            ),
-
             Text(
               "Sem Anotações!",
               style: TextStyle(
@@ -378,7 +355,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
     } else {
-
         return Scrollbar(
           child: Column(
             children: <Widget>[
@@ -521,9 +497,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: _buildTaskList(size),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
 
-      floatingActionButton: Opacity(
-        opacity: _stateFloatingButton ? 1 : 0,
-        child: _stateFloatingButton ? FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
             mini: false,
             backgroundColor: KPrimaryColor.withOpacity(0.8),
             foregroundColor: Colors.white,
@@ -531,8 +505,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: (){
               _cadastro();
             }
-        ) : Text(""),
-      )
+        ),
     );
   }
 }
