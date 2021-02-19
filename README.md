@@ -10,7 +10,7 @@
 
 A ideia é:
 
-_"Criar uma aplicação de anotações para armazenar qualquer informação&dado que o usuário deseja."_
+_"Criar uma aplicação minimalista de anotações onde a mesma tenha um design simples e belo, com intuito de armazenar informações&dados que o próprio usuário deseja inserir."_
 
 Este repositório tem foco, na criação de uma aplicação de anotações utilazando CRUD(Create, Read, Update, Delete), interligado a um banco de dados que seja armazenado no  dispositivo móvel do usuário.
 
@@ -38,33 +38,17 @@ Aqui estão as tecnologias utilizadas neste projeto.
 
 ### Funcionalidades
 
-**Funcionalidades ainda não preparadas**
-
-- Choose your interests (all, technology, philosophy, science, business, pop-culture or history - it will be used to make requests in order to have a personalized app with what the user want to hear about)
-
-- Get informations about a specific Author, with his New Releases/Featured Podcats and Related Authors
-
-- Library
-	- Create Playlists, add podcasts and download it to listen offline
-
-	- Access Your Podcasts (Downloaded + Podcasts saved on your Playlists) in the form of playlist
-
-	- Access your Podcasts downloaded in the form of playlist
-	
-	- Access recently played podcasts in the form of playlist
-
-	- Change your interests
-
+- CRUD(Create, Read, Update, Delete) de anotações. 
 
 --------------------------------------------------------------------------------------
 
-### Algumas Observações Sobre a Aplicação ????
+### Algumas Observações Sobre a Aplicação
 
-**Observações ainda não preparadas**
+1 - A aplicação está em fase de desenvolvimento, foi criado primeiramente a funcionalidade CRUD para ter como utilizar a aplicação.
 
-1 - Não há funcionalidade de Login / Cadastro, os botões e os formulários da Tela de Login são apenas para questões de IU.
+2 - O UX Design da aplicação ainda não foi desenvolvido.
 
-2 - A única opção que funciona na tela _Settings_ é alternar o tema Dark / Light, todas as outras são apenas para questões de interface do usuário.
+3 - Aplicação está sujeita a travamentos e a segurança dos dados ainda não foi implementada.
 
 --------------------------------------------------------------------------------------
 
