@@ -19,9 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   AnotacaoHelper _helper = AnotacaoHelper();
 
-
-
   bool _loading = true;
+  bool _stateFloatingButton;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -142,7 +141,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: (){
                   //salvar
                   if(_formKey.currentState.validate()){
-
+                    setState(() {
+                      _stateFloatingButton = true;
+                    });
                     salvarAtualizarAnotacao(anotacaoSelecionada: anotacao);
                     Navigator.pop(context);
                   }
@@ -171,9 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context){
           return Scaffold(
             appBar: AppBar(
-
               actions: <Widget>[
-
                 IconButton(
                   icon: Icon(
                     Icons.clear,
@@ -278,7 +277,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                     )
-
                   ],
                 ),
               ),
@@ -323,7 +321,6 @@ class _HomeScreenState extends State<HomeScreen> {
     _descricaoController.clear();
 
     recuperarAnotacoes();
-
   }
 
   _formatarData(String data){
@@ -353,7 +350,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: size.height * 0.08,
                 child: RaisedButton(
                   shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(15.0)
+                      borderRadius: new BorderRadius.circular(58.0)
                   ),
                   child: Text(
                     "ADICIONAR ANOTAÇÃO",
@@ -362,7 +359,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: size.height * 0.025,
                     ),
                   ), //Text
-                  color: KPrimaryColor.withOpacity(0.8),
+                  color: KPrimaryColor.withOpacity(0.7),
                   onPressed: (){
                     _cadastro();
                   },
@@ -374,7 +371,7 @@ class _HomeScreenState extends State<HomeScreen> {
               "Sem Anotações!",
               style: TextStyle(
                 color: KPrimaryColor.withOpacity(0.7),
-                fontSize: size.height * 0.020,
+                fontSize: size.height * 0.023,
               ),
             ),
           ],
@@ -494,11 +491,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _loading = true;
+    _stateFloatingButton = true;
     super.initState();
     _helper.getAll().then((list) {
       setState(() {
         anotacoes = list;
         _loading = false;
+        _stateFloatingButton = false;
       });
     });
   }
@@ -521,15 +520,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
       body: _buildTaskList(size),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionButton(
-          mini: false,
-          backgroundColor: KPrimaryColor.withOpacity(0.8),
-          foregroundColor: Colors.white,
-          child: Icon(Icons.add),
-          onPressed: (){
-            _cadastro();
-          }
-      ),
+
+      floatingActionButton: Opacity(
+        opacity: _stateFloatingButton ? 1 : 0,
+        child: _stateFloatingButton ? FloatingActionButton(
+            mini: false,
+            backgroundColor: KPrimaryColor.withOpacity(0.8),
+            foregroundColor: Colors.white,
+            child: Icon(Icons.add),
+            onPressed: (){
+              _cadastro();
+            }
+        ) : Text(""),
+      )
     );
   }
 }
