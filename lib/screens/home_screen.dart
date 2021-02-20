@@ -179,7 +179,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.white70,
                     size: size.height * 0.05,
                   ),
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () {
+                    if(_formKey.currentState.validate()){
+                      salvarAtualizarAnotacao(anotacaoSelecionada: anotacao);
+                      Navigator.pop(context);
+                    }
+                  },
                 ),
 
                 IconButton(
@@ -189,26 +194,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     size: 30,
                   ),
                   onPressed: (){
-                    if(_formKey.currentState.validate()){
-                      salvarAtualizarAnotacao(anotacaoSelecionada: anotacao);
-                      Navigator.pop(context);
-                    }
+
                   },
                 ),
 
-                IconButton(
-                  icon: Icon(
-                    Icons.delete,
-                    color: Colors.white70,
-                    size: 30,
+                PopupMenuItem(
+                  child: ListTile(
+                    leading: Icon(Icons.edit),
+                    title: Text('Editar'),
+                    onTap: (){
+                      _cadastro(anotacao: anotacao);
+                    },
                   ),
-                  onPressed: (){
-                    if(_formKey.currentState.validate()){
-                      salvarAtualizarAnotacao(anotacaoSelecionada: anotacao);
-                      Navigator.pop(context);
-                    }
-                  },
                 ),
+
+                PopupMenuDivider(),
+
+                PopupMenuItem(
+                  child: ListTile(
+                    leading: Icon(Icons.article),
+                    title: Text('Item 3'),
+                  ),
+                ),
+
               ],
               backgroundColor: KPrimaryColor.withOpacity(0.9),
             ),
