@@ -1,4 +1,4 @@
-## Annotations
+## Annotations(Anotações)
 
 ![License](https://img.shields.io/github/license/LucasSantus/Annotations)
 ![Languages](https://img.shields.io/github/languages/count/LucasSantus/Annotations)
