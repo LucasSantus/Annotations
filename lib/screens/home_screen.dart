@@ -33,6 +33,52 @@ class _HomeScreenState extends State<HomeScreen> {
   String _stateTitulo = "";
   String _stateButton = "";
 
+  _deleteAlertDialog(Anotacao anotacao){
+    showDialog(
+        context: context,
+        builder: (context){
+          return AlertDialog(
+            title: Text(
+              "Deseja Realmente deletar essa Anotação?",
+              style: TextStyle(
+                color: KPrimaryColor.withOpacity(0.8),
+                fontSize: 18,
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                  onPressed: () => Navigator.pop(context),
+                  color: Colors.white,
+                  child: Text(
+                    "Cancelar",
+                    style: TextStyle(
+                      color: KPrimaryColor.withOpacity(0.8),
+                    ),
+                  )
+              ),
+              FlatButton(
+                onPressed: () async {
+                  //salvar
+                  if(_formKey.currentState.validate()){
+                    await _db.removerAnotacao( anotacao.id );
+                    recuperarAnotacoes();
+                    Navigator.pop(context);
+                  }
+                },
+                color: KPrimaryColor.withOpacity(0.8),
+                child: Text(
+                  "Confirmar",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          );
+        }
+    );
+  }
+
   _cadastro( {Anotacao anotacao} ){
 
     if( anotacao == null ){
@@ -193,8 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         leading: Icon(Icons.delete),
                         title: Text('Deletar'),
                         onTap: () async {
-                          await _db.removerAnotacao( anotacao.id );
-                          recuperarAnotacoes();
+                          _deleteAlertDialog(anotacao);
                         },
                       ),
                     ),
