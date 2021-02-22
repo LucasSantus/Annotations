@@ -173,50 +173,33 @@ class _HomeScreenState extends State<HomeScreen> {
           return Scaffold(
             appBar: AppBar(
               actions: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.clear,
-                    color: Colors.white70,
-                    size: size.height * 0.05,
-                  ),
-                  onPressed: () {
-                    if(_formKey.currentState.validate()){
-                      salvarAtualizarAnotacao(anotacaoSelecionada: anotacao);
-                      Navigator.pop(context);
-                    }
-                  },
+                PopupMenuButton(
+                  icon: Icon(Icons.more_vert),
+                  itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                    PopupMenuItem(
+                      child: ListTile(
+                        leading: Icon(Icons.edit),
+                        title: Text('Editar'),
+                        onTap: (){
+                          _cadastro(anotacao: anotacao);
+                        },
+                      ),
+                    ),
+
+                    PopupMenuDivider(),
+
+                    PopupMenuItem(
+                      child: ListTile(
+                        leading: Icon(Icons.delete),
+                        title: Text('Deletar'),
+                        onTap: () async {
+                          await _db.removerAnotacao( anotacao.id );
+                          recuperarAnotacoes();
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-
-                IconButton(
-                  icon: Icon(
-                    Icons.edit,
-                    //color: Colors.white70,
-                    size: 30,
-                  ),
-                  onPressed: (){
-
-                  },
-                ),
-
-                PopupMenuItem(
-                  child: ListTile(
-                    leading: Icon(Icons.edit),
-                    title: Text('Editar'),
-                    onTap: (){
-                      _cadastro(anotacao: anotacao);
-                    },
-                  ),
-                ),
-
-                PopupMenuDivider(),
-
-                PopupMenuItem(
-                  child: ListTile(
-                    leading: Icon(Icons.article),
-                    title: Text('Item 3'),
-                  ),
-                ),
-
               ],
               backgroundColor: KPrimaryColor.withOpacity(0.9),
             ),
