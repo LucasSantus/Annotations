@@ -34,54 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
   String _stateTitulo = "";
   String _stateButton = "";
 
-  _deleteAlertDialog(Anotacao anotacao){
-    showDialog(
-        context: context,
-        builder: (context){
-          return AlertDialog(
-            title: Text(
-              "Deseja Realmente deletar essa Anotação?",
-              style: TextStyle(
-                color: KPrimaryColor.withOpacity(0.8),
-                fontSize: 18,
-              ),
-            ),
-            actions: <Widget>[
-              FlatButton(
-                  onPressed: () => Navigator.pop(context),
-                  color: Colors.white,
-                  child: Text(
-                    "Cancelar",
-                    style: TextStyle(
-                      color: KPrimaryColor.withOpacity(0.8),
-                    ),
-                  )
-              ),
-              FlatButton(
-                child: Text(
-                  "Confirmar",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                color: KPrimaryColor.withOpacity(0.8),
-                onPressed: () async {
-                  //salvar
-                  if(_formKey.currentState.validate()){
-                    await _db.removerAnotacao( anotacao.id );
-                    recuperarAnotacoes();
-                    Navigator.pop(context);
-                  }
-                },
-
-
-              ),
-            ],
-          );
-        }
-    );
-  }
-
   _cadastro( {Anotacao anotacao} ){
 
     if( anotacao == null ){
@@ -212,15 +164,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   recuperarAnotacoes() async {
-
     List anotacoesRecuperadas = await _db.recuperarAnotacoes();
-
     List<Anotacao> listaTemporaria = List<Anotacao>();
     for( var item in anotacoesRecuperadas ){
       Anotacao anotacao = Anotacao.fromMap( item );
       listaTemporaria.add( anotacao );
     }
-
     setState(() {
       anotacoes = listaTemporaria;
     });
@@ -353,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               onTap: (){
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => Visualize()),
+                                  MaterialPageRoute(builder: (context) => Visualize(anotacao, size)),
                                 );
                                 //_visualizar(anotacao, size);
                               },
