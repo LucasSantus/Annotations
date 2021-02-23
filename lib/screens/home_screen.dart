@@ -1,4 +1,5 @@
 import 'package:annotations/helper/model/anotacao.dart';
+import 'package:annotations/screens/visualize.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:annotations/helper/anotacao_helper.dart';
@@ -350,7 +351,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             child: ListTile(
                               onTap: (){
-                                _visualizar(anotacao, size);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Visualize()),
+                                );
+                                //_visualizar(anotacao, size);
                               },
                               title: Text(
                                 anotacao.titulo,

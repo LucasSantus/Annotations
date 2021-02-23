@@ -9,6 +9,10 @@ import '../constants.dart';
 
 class Visualize extends StatelessWidget {
 
+  Anotacao anotacao;
+  Size size;
+
+  Visualize(this.anotacao, this.size);
 
   _visualizar(Anotacao anotacao, Size size){
 
