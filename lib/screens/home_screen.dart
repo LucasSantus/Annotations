@@ -114,7 +114,6 @@ class _HomeScreenState extends State<HomeScreen> {
               actions: <Widget>[
                 IconButton(
                   icon: Icon(Icons.add),
-
                   onPressed: (){
                     //salvar
                     if(_formKey.currentState.validate()){
@@ -138,10 +137,12 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Form(
                 key: _formKey,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.only(top: 16, bottom: 16),
+                      padding: EdgeInsets.only(top: 16, bottom: 16, left: 16, right: 16),
                       child: TextFormField(
                         maxLength: 18,
                         controller: _tituloController,
@@ -171,30 +172,33 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
 
-                    TextFormField(
-                      maxLines: 5,
-                      controller: _descricaoController,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(top: 12, bottom: 2, left: 12, right: 2),
-                        labelText: "Descrição:",
-                        labelStyle: TextStyle(
-                          color: KPrimaryColor.withOpacity(0.9),
+                    Padding(
+                      padding: EdgeInsets.only(top: 16, bottom: 16, left: 16, right: 16),
+                      child: TextFormField(
+                        maxLines: 5,
+                        controller: _descricaoController,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(top: 12, bottom: 2, left: 12, right: 2),
+                          labelText: "Descrição:",
+                          labelStyle: TextStyle(
+                            color: KPrimaryColor.withOpacity(0.9),
+                          ),
+                          hintText: "Insira a Descrição...",
+                          hintStyle: TextStyle(
+                            color: KPrimaryColor.withOpacity(0.3),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(1),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
-                        hintText: "Insira a Descrição...",
-                        hintStyle: TextStyle(
-                          color: KPrimaryColor.withOpacity(0.3),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(1),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
+                        validator: (valor){
+                          if(valor.isEmpty) return "Campo Obrigatório!";
+                          return null;
+                        },
                       ),
-                      validator: (valor){
-                        if(valor.isEmpty) return "Campo Obrigatório!";
-                        return null;
-                      },
-                    )
+                    ),
                   ],
                 ),
               ),
