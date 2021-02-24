@@ -103,6 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context){
           return Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               title: Text(
                 "$_stateTitulo",
                 style: TextStyle(
