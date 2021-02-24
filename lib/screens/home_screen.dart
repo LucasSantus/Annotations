@@ -393,82 +393,82 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
     } else {
-        return Scrollbar(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                  child: ListView.builder(
-                      itemCount: anotacoes.length,
-                      itemBuilder: (context, index){
+      return Scrollbar(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+                child: ListView.builder(
+                    itemCount: anotacoes.length,
+                    itemBuilder: (context, index){
 
-                        final anotacao = anotacoes[index];
+                      final anotacao = anotacoes[index];
 
-                        return Card(
-                          child: Dismissible(
-                            key: Key( DateTime.now().millisecondsSinceEpoch.toString() ),
-                            direction: DismissDirection.endToStart,
-                            onDismissed: (direction) async {
+                      return Card(
+                        child: Dismissible(
+                          key: Key( DateTime.now().millisecondsSinceEpoch.toString() ),
+                          direction: DismissDirection.endToStart,
+                          onDismissed: (direction) async {
 
-                              //recuperar último item excluído
+                            //recuperar último item excluído
 
-                              _ultimaAnotacaoRemovida = anotacao;
-                              anotacoesRemovidas.add(_ultimaAnotacaoRemovida);
+                            _ultimaAnotacaoRemovida = anotacao;
+                            anotacoesRemovidas.add(_ultimaAnotacaoRemovida);
 
-                              await _db.removerAnotacao( anotacao.id );
+                            await _db.removerAnotacao( anotacao.id );
 
-                              recuperarAnotacoes();
+                            recuperarAnotacoes();
 
-                            },
-                            background: Container(
-                              color: Colors.red.withOpacity(0.9),
-                              padding: EdgeInsets.all(16),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.delete,
-                                    color: Colors.white,
-                                  )
-                                ],
-                              ),
-                            ),
-                            child: ListTile(
-                              onTap: (){
-                                _visualizar(anotacao, size);
-                              },
-                              title: Text(
-                                anotacao.titulo,
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: KPrimaryColor.withOpacity(0.8),
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.bold,
-                                  decorationStyle: TextDecorationStyle.dashed,
-                                ),
-                              ),
-                              trailing: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: <Widget>[
-                                  Text(
-                                    "${_formatarData(anotacao.data)}",
-                                    style: TextStyle(
-                                      fontSize: 11,
-                                      color: KPrimaryColor.withOpacity(0.8),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                          },
+                          background: Container(
+                            color: Colors.red.withOpacity(0.9),
+                            padding: EdgeInsets.all(16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                )
+                              ],
                             ),
                           ),
-                        );
-                      }
-                  )
-              )
-            ],
-          ),
-        );
+                          child: ListTile(
+                            onTap: (){
+                              _visualizar(anotacao, size);
+                            },
+                            title: Text(
+                              anotacao.titulo,
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: KPrimaryColor.withOpacity(0.8),
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold,
+                                decorationStyle: TextDecorationStyle.dashed,
+                              ),
+                            ),
+                            trailing: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: <Widget>[
+                                Text(
+                                  "${_formatarData(anotacao.data)}",
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: KPrimaryColor.withOpacity(0.8),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                )
+            )
+          ],
+        ),
+      );
     }
   }
 
@@ -506,14 +506,14 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
 
       floatingActionButton: FloatingActionButton(
-            mini: false,
-            backgroundColor: KPrimaryColor.withOpacity(0.8),
-            foregroundColor: Colors.white,
-            child: Icon(Icons.add),
-            onPressed: (){
-              _cadastro();
-            }
-        ),
+          mini: false,
+          backgroundColor: KPrimaryColor.withOpacity(0.8),
+          foregroundColor: Colors.white,
+          child: Icon(Icons.add),
+          onPressed: (){
+            _cadastro();
+          }
+      ),
     );
   }
 }
