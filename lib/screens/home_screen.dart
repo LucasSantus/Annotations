@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  _cadastro( {Anotacao anotacao} ){
+  _cadastro( Size size, {Anotacao anotacao}){
 
     if( anotacao == null ){
       //salvando
@@ -101,15 +101,50 @@ class _HomeScreenState extends State<HomeScreen> {
     showDialog(
         context: context,
         builder: (context){
-          return AlertDialog(
-            title: Text(
-              "$_stateTitulo",
-              style: TextStyle(
-                color: KPrimaryColor.withOpacity(0.8),
-                fontSize: 18,
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                "$_stateTitulo",
+                style: TextStyle(
+                  color: KPrimaryColor.withOpacity(0.8),
+                  fontSize: 18,
+                ),
               ),
+              actions: <Widget>[
+                FlatButton(
+                    onPressed: () => Navigator.pop(context),
+                    color: Colors.white,
+                    child: Text(
+                      "Cancelar",
+                      style: TextStyle(
+                        color: KPrimaryColor.withOpacity(0.8),
+                      ),
+                    )
+                ),
+                FlatButton(
+                  onPressed: (){
+                    //salvar
+                    if(_formKey.currentState.validate()){
+                      setState(() {
+                        _stateFloatingButton = true;
+                      });
+                      salvarAtualizarAnotacao(anotacaoSelecionada: anotacao);
+                      Navigator.pop(context);
+                    }
+                  },
+                  color: KPrimaryColor.withOpacity(0.8),
+                  child: Text(
+                    _stateButton,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            content: SingleChildScrollView(
+            //backgroundColor: KPrimaryColor.withOpacity(0.9),
+
+            body: SingleChildScrollView(
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -174,37 +209,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            actions: <Widget>[
-              FlatButton(
-                  onPressed: () => Navigator.pop(context),
-                  color: Colors.white,
-                  child: Text(
-                    "Cancelar",
-                    style: TextStyle(
-                      color: KPrimaryColor.withOpacity(0.8),
-                    ),
-                  )
-              ),
-              FlatButton(
-                onPressed: (){
-                  //salvar
-                  if(_formKey.currentState.validate()){
-                    setState(() {
-                      _stateFloatingButton = true;
-                    });
-                    salvarAtualizarAnotacao(anotacaoSelecionada: anotacao);
-                    Navigator.pop(context);
-                  }
-                },
-                color: KPrimaryColor.withOpacity(0.8),
-                child: Text(
-                  _stateButton,
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
           );
         }
     );
@@ -230,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         leading: Icon(Icons.edit),
                         title: Text('Editar'),
                         onTap: (){
-                          _cadastro(anotacao: anotacao);
+                          _cadastro(size, anotacao: anotacao);
                         },
                       ),
                     ),
@@ -511,7 +515,7 @@ class _HomeScreenState extends State<HomeScreen> {
           foregroundColor: Colors.white,
           child: Icon(Icons.add),
           onPressed: (){
-            _cadastro();
+            _cadastro(size);
           }
       ),
     );
