@@ -107,22 +107,14 @@ class _HomeScreenState extends State<HomeScreen> {
               title: Text(
                 "$_stateTitulo",
                 style: TextStyle(
-                  color: KPrimaryColor.withOpacity(0.8),
+                  color: Colors.white, //KPrimaryColor.withOpacity(0.8)
                   fontSize: 18,
                 ),
               ),
               actions: <Widget>[
-                FlatButton(
-                    onPressed: () => Navigator.pop(context),
-                    color: Colors.white,
-                    child: Text(
-                      "Cancelar",
-                      style: TextStyle(
-                        color: KPrimaryColor.withOpacity(0.8),
-                      ),
-                    )
-                ),
-                FlatButton(
+                IconButton(
+                  icon: Icon(Icons.add),
+
                   onPressed: (){
                     //salvar
                     if(_formKey.currentState.validate()){
@@ -133,13 +125,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.pop(context);
                     }
                   },
-                  color: KPrimaryColor.withOpacity(0.8),
-                  child: Text(
-                    _stateButton,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.highlight_remove),
+                  onPressed: () => Navigator.pop(context),
                 ),
               ],
             ),
