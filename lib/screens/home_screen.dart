@@ -107,8 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
               title: Text(
                 "$_stateTitulo",
                 style: TextStyle(
-                  color: Colors.white, //KPrimaryColor.withOpacity(0.8)
-                  fontSize: 18,
+                  color: Colors.white,
+                  fontSize: size.height*0.028, //18
                 ),
               ),
               actions: <Widget>[
@@ -142,12 +142,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.only(top: 16, bottom: 16, left: 16, right: 16),
+                      padding: EdgeInsets.only(top: size.height*0.016, bottom: size.height*0.017, left: size.width*0.023, right: size.width*0.023),
                       child: TextFormField(
-                        maxLength: 18,
+                        //maxLength: 18,
                         controller: _tituloController,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(top: 12, bottom: 8, left: 12, right: 8),
+                          contentPadding: EdgeInsets.only(top: size.height*0.019,
+                                                          bottom: size.height*0.013,
+                                                          left: size.width*0.034,
+                                                          right: size.width*0.023),
                           labelText: "Título:",
                           labelStyle: TextStyle(
                             color: KPrimaryColor.withOpacity(0.9),
@@ -157,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: KPrimaryColor.withOpacity(0.3),
                           ),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(1),
+                            borderRadius: BorderRadius.circular(4),
                           ),
                           filled: true,
                           fillColor: Colors.white,
@@ -166,19 +169,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         // ignore: missing_return
                         validator: (valor){
                           if(valor.isEmpty) return "Campo Obrigatório!";
-                          if(valor.length > 18) return "Max: 18 Letras!";
+                          //if(valor.length > 18) return "Max: 18 Letras!";
                           return null;
                         },
                       ),
                     ),
 
                     Padding(
-                      padding: EdgeInsets.only(top: 16, bottom: 16, left: 16, right: 16),
+                      padding: EdgeInsets.only(bottom: size.height*0.013, left: size.width*0.023, right: size.width*0.023),
                       child: TextFormField(
-                        maxLines: 5,
+                        //maxLines: 14,
                         controller: _descricaoController,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(top: 12, bottom: 300, left: 12, right: 2),
+                          contentPadding: EdgeInsets.only(top: size.height*0.019, bottom: size.height*0.58, left: size.width*0.034, right: size.width*0.01),
                           labelText: "Descrição:",
                           labelStyle: TextStyle(
                             color: KPrimaryColor.withOpacity(0.9),
@@ -188,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: KPrimaryColor.withOpacity(0.3),
                           ),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(1),
+                            borderRadius: BorderRadius.circular(4),
                           ),
                           filled: true,
                           fillColor: Colors.white,
@@ -491,7 +494,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Annotations",
+          "$KNameAplication",
           style: TextStyle(
             fontSize: size.height * 0.031,
             color: Colors.white,
