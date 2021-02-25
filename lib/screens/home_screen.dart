@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               actions: <Widget>[
                 IconButton(
-                  icon: Icon(Icons.add),
+                  icon: Icon(Icons.check),
                   onPressed: (){
                     //salvar
                     if(_formKey.currentState.validate()){
@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.highlight_remove),
+                  icon: Icon(Icons.close),
                   onPressed: () => Navigator.pop(context),
                 ),
               ],
@@ -178,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         maxLines: 5,
                         controller: _descricaoController,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(top: 12, bottom: 2, left: 12, right: 2),
+                          contentPadding: EdgeInsets.only(top: 12, bottom: 300, left: 12, right: 2),
                           labelText: "Descrição:",
                           labelStyle: TextStyle(
                             color: KPrimaryColor.withOpacity(0.9),
