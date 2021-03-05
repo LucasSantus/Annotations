@@ -212,7 +212,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _visualizar(Anotacao anotacao, Size size){
 
-    _tituloController.text = anotacao.titulo;
     _descricaoController.text = anotacao.descricao;
 
     showDialog(
@@ -220,6 +219,8 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context){
           return Scaffold(
             appBar: AppBar(
+              title: Text("${anotacao.titulo}"),
+
               actions: <Widget>[
                 PopupMenuButton(
                   elevation: size.height*0.02,
@@ -261,6 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
 
+                    /*
                     Padding(
                       padding: EdgeInsets.only(top: 12, left: 12, bottom: 0, right: 12),
                       child: TextFormField(
@@ -285,6 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
+                    */
 
                     Padding(
                       padding: EdgeInsets.only(top: 16, left: 12, bottom: 12, right: 12),
@@ -375,9 +378,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildTaskList(Size size) {
     if (anotacoes.isEmpty) {
       return Center(
-        child: _loading ? CircularProgressIndicator(
-          backgroundColor: KPrimaryColor.withOpacity(0.7),
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+        child: _loading ? Container(
+          constraints: BoxConstraints.expand(width: 40, height: 40),
+          child: CircularProgressIndicator(
+            backgroundColor: KPrimaryColor.withOpacity(0.7),
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            //strokeWidth: 10,
+          ),
         ) : Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
