@@ -12,7 +12,7 @@ A ideia é:
 
 _"Criar uma aplicação minimalista de anotações onde a mesma tenha um design simples e belo, com intuito de armazenar informações&dados que o próprio usuário deseja inserir."_
 
-Este repositório tem foco, na criação de uma aplicação de anotações utilazando CRUD(Create, Read, Update, Delete), interligado a um banco de dados que seja armazenado no  dispositivo móvel do usuário.
+Este repositório tem foco, na criação de uma aplicação de anotações utilizando o padrão CRUD(Create, Read, Update, Delete), interligado a um banco de dados que seja armazenado no próprio dispositivo móvel do usuário.
 
 --------------------------------------------------------------------------------------
 
@@ -92,12 +92,13 @@ $ git clone https://github.com/LucasSantus/Annotations.git
 
 **Inserindo o Dart**
 
-Com o Android Studio aberto, abra o projeto "Annotations". Vá em "File > Settings > Languages&Frameworks > Dart" do IDE, selecionando "Enable Dart support fot the project 'annotations'", clique em ... para inserir o local onde o Dart está armazenado, redirecione-se para a pasta onde o flutter foi instalado, a pasta do Dart está localizada juntamente do flutter.
+Com o Android Studio aberto, abra o projeto "annotations". Vá em (File > Settings > Languages&Frameworks > Dart) do IDE, selecionando (Enable Dart support fot the project 'annotations'), clique em ... para inserir o local onde o Dart está armazenado, redirecione-se para a pasta onde o flutter foi instalado, a pasta do Dart está localizada juntamente do flutter.
+
 Exemplo: D:\ProgramFiles\AndroidStudio\flutter\bin\cache\dart-sdk
 
 **Selecionando o Android**
 
-COm o Android Studio aberto, abra o projeto "Annotations". Abra o Project Structure(Control+Alt+Shift+S), selecionando "<No SDK>" irá abrir uma caixa de seleção, selecione a versão de android instalada em sua máquina. 
+Com o Android Studio aberto, abra o projeto "Annotations". Abra o Project Structure(Control+Alt+Shift+S), selecionando (No SDK) irá abrir uma caixa de seleção, selecione a versão de android instalada em sua máquina. 
 
 **Instalando Dependências**
 
