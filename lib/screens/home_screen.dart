@@ -19,7 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
   AnotacaoHelper _helper = AnotacaoHelper();
 
   bool _loading = true;
-  bool _stateFloatingButton;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -100,114 +99,114 @@ class _HomeScreenState extends State<HomeScreen> {
 
     showDialog(
         context: context,
-        builder: (context){
-          return Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: Text(
-                "$_stateTitulo",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: size.height*0.028, //18
-                ),
-              ),
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.check),
-                  onPressed: (){
-                    //salvar
-                    if(_formKey.currentState.validate()){
-                      setState(() {
-                        _stateFloatingButton = true;
-                      });
-                      salvarAtualizarAnotacao(anotacaoSelecionada: anotacao);
-                      Navigator.pop(context);
-                    }
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.close),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ],
-            ),
-            //backgroundColor: KPrimaryColor.withOpacity(0.9),
-
-            body: SingleChildScrollView(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(top: size.height*0.016, bottom: size.height*0.017, left: size.width*0.023, right: size.width*0.023),
-                      child: TextFormField(
-                        //maxLength: 18,
-                        controller: _tituloController,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(top: size.height*0.019,
-                                                          bottom: size.height*0.013,
-                                                          left: size.width*0.034,
-                                                          right: size.width*0.023),
-                          labelText: "Título:",
-                          labelStyle: TextStyle(
-                            color: KPrimaryColor.withOpacity(0.9),
-                          ),
-                          hintText: "Insira o Título...",
-                          hintStyle: TextStyle(
-                            color: KPrimaryColor.withOpacity(0.3),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
+          child: Scaffold(
+                appBar: AppBar(
+                  automaticallyImplyLeading: false,
+                  title: Text(
+                    "$_stateTitulo",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: size.height*0.028, //18
+                    ),
+                  ),
+                  actions: <Widget>[
+                    Builder(
+                        builder: (context) => IconButton(
+                          icon: Icon(Icons.check),
+                          onPressed: (){
+                            //salvar
+                            if(_formKey.currentState.validate()){
+                              salvarAtualizarAnotacao(anotacaoSelecionada: anotacao);
+                              Navigator.pop(context);
+                            }
+                          },
                         ),
-
-                        // ignore: missing_return
-                        validator: (valor){
-                          if(valor.isEmpty) return "Campo Obrigatório!";
-                          //if(valor.length > 18) return "Max: 18 Letras!";
-                          return null;
-                        },
-                      ),
                     ),
 
-                    Padding(
-                      padding: EdgeInsets.only(bottom: size.height*0.013, left: size.width*0.023, right: size.width*0.023),
-                      child: TextFormField(
-                        //maxLines: 14,
-                        controller: _descricaoController,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(top: size.height*0.019, bottom: size.height*0.58, left: size.width*0.034, right: size.width*0.01),
-                          labelText: "Descrição:",
-                          labelStyle: TextStyle(
-                            color: KPrimaryColor.withOpacity(0.9),
-                          ),
-                          hintText: "Insira a Descrição...",
-                          hintStyle: TextStyle(
-                            color: KPrimaryColor.withOpacity(0.3),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                        ),
-                        validator: (valor){
-                          if(valor.isEmpty) return "Campo Obrigatório!";
-                          return null;
-                        },
-                      ),
+                    IconButton(
+                      icon: Icon(Icons.close),
+                      onPressed: () => Navigator.pop(context),
                     ),
                   ],
                 ),
+                //backgroundColor: KPrimaryColor.withOpacity(0.9),
+
+                body: SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(top: size.height*0.016, bottom: size.height*0.017, left: size.width*0.023, right: size.width*0.023),
+                          child: TextFormField(
+                            //maxLength: 18,
+                            controller: _tituloController,
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(top: size.height*0.019,
+                                  bottom: size.height*0.013,
+                                  left: size.width*0.034,
+                                  right: size.width*0.023),
+                              labelText: "Título:",
+                              labelStyle: TextStyle(
+                                color: KPrimaryColor.withOpacity(0.9),
+                              ),
+                              hintText: "Insira o Título...",
+                              hintStyle: TextStyle(
+                                color: KPrimaryColor.withOpacity(0.3),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+
+                            // ignore: missing_return
+                            validator: (valor){
+                              if(valor.isEmpty) return "Campo Obrigatório!";
+                              //if(valor.length > 18) return "Max: 18 Letras!";
+                              return null;
+                            },
+                          ),
+                        ),
+
+
+                        Padding(
+                          padding: EdgeInsets.only(bottom: size.height*0.013, left: size.width*0.023, right: size.width*0.023),
+                          child: TextFormField(
+                            enabled: true,
+                            maxLines: 23,
+                            controller: _descricaoController,
+                            decoration: InputDecoration(
+                              //contentPadding: EdgeInsets.only(top: size.height*0.019, bottom: size.height*0.58, left: size.width*0.034, right: size.width*0.01),
+                              labelText: "Descrição:",
+                              labelStyle: TextStyle(
+                                color: KPrimaryColor.withOpacity(0.9),
+                              ),
+                              hintText: "Insira a Descrição...",
+                              hintStyle: TextStyle(
+                                color: KPrimaryColor.withOpacity(0.3),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                            validator: (valor){
+                              if(valor.isEmpty) return "Campo Obrigatório!";
+                              return null;
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-          );
-        }
     );
   }
 
@@ -419,6 +418,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
                             recuperarAnotacoes();
 
+                            final snackBar = SnackBar(
+                              //behavior: SnackBarBehavior.floating,
+                              content: Text('Text label'),
+                              action: SnackBarAction(
+                                label: 'Action',
+                                onPressed: () {},
+                              ),
+                            );
+
+                            // Find the Scaffold in the widget tree and use
+                            // it to show a SnackBar.
+                            Scaffold.of(context).showSnackBar(snackBar);
                           },
                           background: Container(
                             color: Colors.red.withOpacity(0.9),
@@ -476,13 +487,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _loading = true;
-    _stateFloatingButton = true;
+
     super.initState();
     _helper.getAll().then((list) {
       setState(() {
         anotacoes = list;
         _loading = false;
-        _stateFloatingButton = false;
       });
     });
   }
@@ -511,10 +521,10 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: KPrimaryColor.withOpacity(0.8),
           foregroundColor: Colors.white,
           child: Icon(Icons.add),
-          onPressed: (){
+          onPressed: () {
             _cadastro(size);
-          }
-      ),
+          },
+        ),
     );
   }
 }
